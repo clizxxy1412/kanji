@@ -236,6 +236,15 @@ button.secondary {
   color: var(--ink-soft);
 }
 
+.streak-tag {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
 .prompt-main {
   font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
   font-size: 42px;
@@ -379,12 +388,11 @@ const WORDS = [{"id":0,"word":"悪い","reading":"わるい","meaning":"bad (adj
 const KANJI = ["悪","安","暗","以","意","医","育","一","員","引","飲","院","右","雨","運","映","泳","英","駅","円","園","横","屋","温","音","下","化","何","夏","家","科","歌","火","花","荷","画","会","回","海","界","皆","絵","開","階","外","学","楽","活","寒","漢","間","関","館","顔","願","期","機","帰","気","記","起","休","急","泣","究","牛","去","魚","京","強","教","橋","業","局","近","金","九","空","係","兄","形","経","計","決","結","月","犬","見","験","元","現","言","個","古","五","午","後","語","公","口","向","好","工","広","校","港","考","行","降","高","号","合","国","黒","今","困","婚","左","最","歳","祭","際","作","昨","雑","三","山","残","仕","使","四","始","姉","子","市","思","指","止","私","紙","試","事","字","寺","持","時","次","治","自","辞","式","七","失","室","実","写","社","者","車","若","主","取","手","酒","受","授","州","秋","終","習","週","集","住","十","重","宿","出","術","春","初","所","暑","書","女","商","小","少","笑","上","乗","場","色","食","信","寝","心","新","森","神","親","身","進","人","図","水","数","世","制","成","晴","正","生","西","青","静","昔","石","赤","切","接","節","説","雪","先","千","専","川","洗","線","選","前","然","全","組","早","相","走","送","贈","側","足","速","族","続","卒","村","多","太","打","体","対","待","貸","台","大","第","題","達","単","短","男","知","地","池","置","遅","茶","着","中","昼","注","朝","町","調","長","鳥","痛","通","低","定","庭","弟","的","天","店","転","点","伝","田","電","登","都","度","土","冬","島","東","答","頭","働","動","同","道","特","読","内","南","難","二","肉","日","入","熱","年","背","配","買","売","白","八","発","半","反","飯","晩","番","非","飛","美","鼻","必","百","氷","表","病","品","不","付","夫","婦","父","部","風","服","払","物","分","文","聞","平","別","変","便","勉","歩","母","方","法","忘","忙","北","本","妹","枚","毎","末","万","味","未","無","名","明","面","木","目","問","門","夜","野","薬","友","有","由","遊","夕","予","曜","様","洋","用","要","来","絡","落","利","理","立","留","旅","両","料","力","林","冷","礼","練","六","和","話","遠"];
 const KANJI_WORDS = {"悪":[0,1],"安":[2,3,4],"暗":[5,6,7],"以":[8,9,10,11,12,13],"意":[14,15,16],"医":[17,18],"育":[19,20,21,22],"一":[23,24,25,26],"員":[27,28,29,30,31],"引":[32,33,34],"飲":[35,36],"院":[37,38],"右":[39,40,41],"雨":[42,43,44],"運":[45,46,47,48,49],"映":[50,51,52,53],"泳":[54,55],"英":[56,57,58],"駅":[59,60],"円":[61,62],"園":[63,64,65],"横":[66,67],"屋":[68,69,70,71,72,73],"温":[74,75,76,77,78],"音":[79,80,81,82],"下":[83,84,85,86,87,88],"化":[89,90,91],"何":[92,93,94],"夏":[95,96,97],"家":[98,99,100,101],"科":[102,103],"歌":[104,105,106],"火":[107,108,109,110],"花":[68,108,111],"荷":[112,113],"画":[51,100,114,115,116,117],"会":[118,119,120],"回":[121,122,123,124],"海":[125,126,127],"界":[128],"皆":[129,130],"絵":[131,132,133],"開":[134,135,136,137],"階":[138,139,140],"外":[141,142,143,144],"学":[145,146,147,148],"楽":[80,149,150,151],"活":[152,153,154],"寒":[155],"漢":[156],"間":[157,158,159,160],"関":[161,162,163,164],"館":[52,165,166,167,168,169],"顔":[170],"願":[171,172],"期":[147,173],"機":[174,175,176,177],"帰":[178],"気":[76,179,180,181,182,183,184],"記":[185,186,187,188],"起":[189,190,191],"休":[192,193,194,195,196],"急":[197,198,199,200],"泣":[201],"究":[202],"牛":[203,204,205,206],"去":[207,208],"魚":[209,210],"京":[211,212],"強":[213,214,215],"教":[22,216,217,218,219],"橋":[220,221],"業":[222,223,224,225],"局":[226,227],"近":[228,229,230],"金":[231,232,233],"九":[234,235,236],"空":[181,237,238,239,240],"係":[163,241],"兄":[242,243,244],"形":[245,246,247],"経":[248,249,250],"計":[117,251,252],"決":[253,254,255],"結":[256,257,258,259],"月":[260,261,262,263],"犬":[264,265],"見":[15,266,267,268],"験":[249,269,270,271],"元":[179,272,273],"現":[274,275,276,277],"言":[278,279,280],"個":[281,282],"古":[283,284],"五":[285,286,287],"午":[288,289],"後":[289,290,291,292],"語":[57,293,294],"公":[63,295],"口":[296,297,298,299],"向":[300,301,302],"好":[303,304],"工":[224,305,306,307],"広":[308,309],"校":[146,310],"港":[240,311],"考":[312,313],"行":[314,315,316,317],"降":[318,319],"高":[320,321,322,323],"号":[324,325,326],"合":[327,328,329],"国":[142,330,331,332,333,334,335],"黒":[336],"今":[337,338,339,340],"困":[341,342],"婚":[257],"左":[343],"最":[230,323,344,345,346],"歳":[347],"祭":[348,349],"際":[350],"作":[351,352,353,354],"昨":[355,356,357,358],"雑":[359,360,361],"三":[362,363,364],"山":[365,366],"残":[367,368,369],"仕":[370,371,372],"使":[373,374,375],"四":[376,377,378,379],"始":[380,381,382],"姉":[383,384],"子":[385,386,387,388],"市":[389,390],"思":[391,392,393],"指":[394,395,396],"止":[397,398,399],"私":[400,401],"紙":[402,403,404,405],"試":[269,329],"事":[306,317,370,406],"字":[156,407,408],"寺":[409,410],"持":[411,412,413],"時":[159,414,415,416],"次":[417],"治":[418,419],"自":[420,421,422,423,424,425],"辞":[426],"式":[427,428,429],"七":[430,431,432,433],"失":[434,435,436],"室":[217,437,438,439],"実":[277,440,441,442,443],"写":[444,445],"社":[446,447,448,449],"者":[17,450,451,452],"車":[423,424,453,454],"若":[451,455],"主":[456,457,458],"取":[459],"手":[88,106,460,461,462,463],"酒":[464,465],"受":[466,467,468],"授":[223,469],"州":[470,471,472,473],"秋":[474],"終":[475,476],"習":[477,478,479,480],"週":[339,481,482,483,484],"集":[485,486,487,488],"住":[489,490],"十":[491,492],"重":[493,494],"宿":[495,496,497,498],"出":[298,499,500,501,502],"術":[503,504,505],"春":[506],"初":[507,508,509,510],"所":[229,490,511,512,513],"暑":[514],"書":[426,515,516],"女":[386,517,518,519,520],"商":[225,521,522],"小":[523,524,525],"少":[526,527,528,529,530],"笑":[531,532],"上":[461,533,534,535],"乗":[536,537,538],"場":[120,513,539],"色":[540,541,542,543,544],"食":[545,546,547,548,549,550],"信":[326,422,551,552],"寝":[190,437,553],"心":[554,555,556,557],"新":[558,559,560],"森":[561,562,563],"神":[449,564,565,566],"親":[567,568,569],"身":[502,570,571,572],"進":[573,574,575,576],"人":[24,93,299,577,578,579],"図":[165,580,581],"水":[55,582,583,584],"数":[408,585,586,587],"世":[128,588,589],"制":[590,591],"成":[592,593,594,595,596],"晴":[597,598],"正":[599,600,601],"生":[111,602,603,604,605,606],"西":[162,607,608],"青":[562,609,610,611],"静":[612,613],"昔":[614,615,616],"石":[617,618],"赤":[619,620,621,622],"切":[569,623,624,625,626],"接":[627,628,629],"節":[630,631,632],"説":[101,633,634],"雪":[635,636],"先":[604,637,638,639,640],"千":[641],"専":[642,643],"川":[644],"洗":[645,646],"線":[647,648,649],"選":[462,650,651],"前":[288,652,653,654],"然":[421,655,656],"全":[332,655,657,658,659,660],"組":[661,662,663],"早":[190,664,665],"相":[666,667],"走":[668],"送":[669,670,671,672],"贈":[673],"側":[41,674],"足":[675,676,677],"速":[678,679,680],"族":[99,681,682],"続":[683,684,685],"卒":[222],"村":[686,687],"多":[688,689],"太":[690,691,692],"打":[693],"体":[21,494,660,694,695],"対":[696,697,698,699],"待":[700,701],"貸":[702],"台":[512,703,704],"大":[148,705,706,707,708,709],"第":[710,711],"題":[496,712,713,714,715],"達":[716,717,718,719,720],"単":[294,721,722],"短":[723,724],"男":[387,725,726],"知":[727,728,729],"地":[86,730,731,732,733],"池":[734,735],"置":[736,737],"遅":[738,739,740],"茶":[542,741,742],"着":[743,744,745,746,747],"中":[335,748,749,750,751,752],"昼":[549,753,754,755],"注":[756,757,758],"朝":[548,665,759,760,761],"町":[762],"調":[763,764,765,766],"長":[448,767,768,769,770],"鳥":[771,772],"痛":[773,774],"通":[775,776,777,778],"低":[779,780,781],"定":[196,395,782,783],"庭":[784,785,786],"弟":[787,788],"的":[789,790,791,792],"天":[180,793,794,795,796],"店":[30,797,798,799,800,801],"転":[46,424,802,803,804],"点":[805,806,807,808],"伝":[809,810,811,812],"田":[813,814],"電":[182,388,454,815],"登":[816,817,818],"都":[212,819,820,821,822],"度":[75,823,824,825,826],"土":[731,827,828],"冬":[829,830],"島":[309,831,832,833],"東":[161,211,834],"答":[835,836],"頭":[774,837,838],"働":[839,840],"動":[47,153,423,841,842,843,844],"同":[845,846,847],"道":[127,516,742,848,849],"特":[850,851],"読":[852,853],"内":[331,854],"南":[855,856,857],"難":[858,859],"二":[860,861,862,863],"肉":[205,864],"日":[25,196,865,866,867],"入":[297,868,869,870],"熱":[871,872],"年":[207,340,873,874,875,876],"背":[321,877],"配":[878,879,880],"買":[881,882],"売":[883,884,885,886],"白":[405,887],"八":[888,889,890],"発":[501,891,892,893,894],"半":[895,896],"反":[897],"飯":[760,898],"晩":[899,900,901],"番":[325,662,902,903],"非":[904,905,906],"飛":[175,907],"美":[503,908,909],"鼻":[910],"必":[911,912],"百":[61,890,913],"氷":[914,915],"表":[275,916,917,918],"病":[37,919],"品":[535,920,921],"不":[922,923,924,925],"付":[926,927,928,929],"夫":[930,931,932],"婦":[933,934],"父":[935,936,937,938,939],"部":[70,154,659,940,941],"風":[215,703,942,943,944],"服":[590,945,946,947],"払":[948],"物":[538,546,744,843,882,949,950,951],"分":[420,689,895,952,953,954],"文":[89,349,353,955,956,957],"聞":[559,958],"平":[959,960,961,962,963],"別":[851,964,965,966],"変":[706,967,968,969],"便":[922,970,971,972],"勉":[214],"歩":[973,974,975],"母":[976,977,978],"方":[280,302,979,980,981],"法":[982,983,984],"忘":[985,986,987],"忙":[988],"北":[127,989,990],"本":[991,992,993,994],"妹":[995],"枚":[996],"毎":[483,997,998,999,1000],"末":[263,1001,1002,1003],"万":[62,1004],"味":[14,1005,1006,1007],"未":[1008],"無":[1009,1010],"名":[654,1011,1012],"明":[633,1013,1014,1015,1016],"面":[629,1017,1018,1019],"木":[1020,1021],"目":[792,1022],"問":[713,1023,1024],"門":[1025],"夜":[1026,1027,1028],"野":[1029,1030],"薬":[227,1031],"友":[718,1032,1033],"有":[1012,1034],"由":[924,1035,1036],"遊":[65,1037],"夕":[432,550,1038,1039],"予":[782,1040,1041,1042],"曜":[865,1043],"様":[565,1044,1045,1046],"洋":[608,691,946,1047],"用":[1048,1049,1050],"要":[912,1051,1052],"来":[481,1008,1053,1054,1055],"絡":[1056],"落":[1057,1058,1059],"利":[970,1060],"理":[1036,1061,1062,1063],"立":[191,295,401,1064],"留":[1065,1066],"旅":[143,1067,1068],"両":[568,1069,1070],"料":[766,1009,1063,1071,1072],"力":[1073,1074,1075],"林":[1076],"冷":[1077,1078],"礼":[435,436],"練":[479,1079],"六":[1080,1081,1082],"和":[439,943,960,1083,1084],"話":[815,1085,1086,1087,1088],"遠":[1089,1090]};
 
-const DAY = 86400000;
-const APP_VERSION = '2.0.0';
+const APP_VERSION = '3.0.0';
 const DIRS = { WM: 'wm', WR: 'wr', MW: 'mw' };
 const GROUP_SIZE = 10;
 const MASTERY_STREAK = 5;
-const NEW_PER_SESSION = 10;
+const COOLDOWN = 5; // minimum questions between repeats of the same card in practice
 
 let cards = {};
 let currentDay = 1;
@@ -414,44 +422,34 @@ function dayRange(d) {
 }
 function cumulativeKanji(d) { return KANJI.slice(0, Math.min(d * GROUP_SIZE, KANJI.length)); }
 
-function freshCard(dueAt) {
-  return { state: 'learning', interval: 0, ease: 2.3, reps: 0, lapses: 0,
-           everLapsed: false, hardWon: 0, easyStreak: 0, due: dueAt };
+function dayWords(d) {
+  const out = [];
+  dayRange(d).forEach(k => (KANJI_WORDS[k] || []).forEach(id => out.push(WORDS[id])));
+  return out;
 }
 
-function grade(card, rating) {
-  const now = Date.now();
-  if (rating === 'again') {
-    card.interval = DAY;
-    card.ease = Math.max(1.3, card.ease - 0.2);
-    card.reps = 0;
-    card.lapses++;
-    card.everLapsed = true;
-    card.hardWon = 0;
-    card.easyStreak = 0;
-    card.state = 'learning';
-  } else {
-    if (card.reps === 0) {
-      card.interval = 3 * DAY;
-    } else {
-      const mult = rating === 'hard' ? 1.2 : rating === 'easy' ? card.ease * 1.3 : card.ease;
-      card.interval = Math.max(DAY, card.interval * mult);
-    }
-    if (rating === 'hard') card.ease = Math.max(1.3, card.ease - 0.15);
-    if (rating === 'easy') card.ease += 0.15;
-    card.reps++;
-    card.state = 'review';
-    if (card.everLapsed) card.hardWon++;
-    card.easyStreak = rating === 'hard' ? 0 : card.easyStreak + 1;
-  }
-  const fuzz = 0.95 + Math.random() * 0.1;
-  card.interval = Math.min(card.interval * fuzz, 180 * DAY);
-  card.due = now + card.interval;
+function untaughtDayWords(d) {
+  return dayWords(d).filter(w => !cards[key(w.id, DIRS.WM)]);
 }
 
-function cardStreakScore(card) {
+function isTaught(wordId) { return !!cards[key(wordId, DIRS.WM)]; }
+
+function teachWord(wordId) {
+  cards[key(wordId, DIRS.WM)] = { streak: 0 };
+  cards[key(wordId, DIRS.WR)] = { streak: 0 };
+  cards[key(wordId, DIRS.MW)] = { streak: 0 };
+  saveCards();
+}
+
+function grade(cardKey, correct) {
+  const c = cards[cardKey];
+  c.streak = correct ? c.streak + 1 : 0;
+  saveCards();
+}
+
+function cardScore(card) {
   if (!card) return 0;
-  return Math.min(card.reps / MASTERY_STREAK, 1);
+  return Math.min(card.streak / MASTERY_STREAK, 1);
 }
 
 function kanjiScore(k) {
@@ -460,7 +458,7 @@ function kanjiScore(k) {
   ids.forEach(id => {
     [DIRS.WM, DIRS.WR, DIRS.MW].forEach(d => {
       const c = cards[key(id, d)];
-      if (c) { total++; sum += cardStreakScore(c); }
+      if (c) { total++; sum += cardScore(c); }
     });
   });
   return total ? sum / total : 0;
@@ -472,30 +470,14 @@ function kanjiFullyMastered(k) {
   for (const id of ids) {
     for (const d of [DIRS.WM, DIRS.WR, DIRS.MW]) {
       const c = cards[key(id, d)];
-      if (!c || c.reps < MASTERY_STREAK) return false;
+      if (!c || c.streak < MASTERY_STREAK) return false;
     }
   }
   return true;
 }
 
-function dayComplete(d) {
-  return cumulativeKanji(d).every(kanjiFullyMastered);
-}
-
-function unlockFollowups(wordId, dir) {
-  if (dir === DIRS.WM) {
-    const wm = cards[key(wordId, DIRS.WM)];
-    if (wm.reps >= 1 && !cards[key(wordId, DIRS.WR)]) {
-      cards[key(wordId, DIRS.WR)] = freshCard(Date.now());
-    }
-  }
-  if (dir === DIRS.WR) {
-    const wr = cards[key(wordId, DIRS.WR)];
-    if (wr.reps >= 1 && !cards[key(wordId, DIRS.MW)]) {
-      cards[key(wordId, DIRS.MW)] = freshCard(Date.now());
-    }
-  }
-}
+function overallMasteredCount() { return KANJI.filter(kanjiFullyMastered).length; }
+function dayComplete(d) { return cumulativeKanji(d).every(kanjiFullyMastered); }
 
 // ---- answer checking ----
 
@@ -524,57 +506,47 @@ function checkAnswer(item, dir, input) {
   return wordOk(input, item.word);
 }
 
-// ---- session building ----
+// ---- practice pool / weighted pick ----
 
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function cumulativeWordIds(d) {
+function cumulativeTaughtPairs(d) {
   const ks = cumulativeKanji(d);
-  const ids = new Set();
-  ks.forEach(k => (KANJI_WORDS[k] || []).forEach(id => ids.add(id)));
-  return ids;
+  const wordIds = new Set();
+  ks.forEach(k => (KANJI_WORDS[k] || []).forEach(id => { if (isTaught(id)) wordIds.add(id); }));
+  const pairs = [];
+  wordIds.forEach(id => {
+    [DIRS.WM, DIRS.WR, DIRS.MW].forEach(d2 => {
+      if (cards[key(id, d2)]) pairs.push({ wordId: id, dir: d2 });
+    });
+  });
+  return pairs;
 }
 
-function dueCardsWithin(wordIdSet) {
-  const now = Date.now();
-  const out = [];
-  for (const k in cards) {
-    if (cards[k].due <= now) {
-      const [widStr, dir] = k.split(':');
-      const wid = parseInt(widStr, 10);
-      if (wordIdSet.has(wid)) out.push({ wordId: wid, dir });
-    }
+function weightFor(streak) { return Math.max(1, MASTERY_STREAK - Math.min(streak, MASTERY_STREAK)); }
+
+function pickNextPractice() {
+  const pool = cumulativeTaughtPairs(currentDay);
+  if (!pool.length) return null;
+  const turn = session.turn || 0;
+  const lastAsked = session.lastAsked || {};
+  let candidates = pool.filter(p => {
+    const t = lastAsked[key(p.wordId, p.dir)];
+    return t === undefined || (turn - t) >= COOLDOWN;
+  });
+  if (!candidates.length) {
+    candidates = pool.slice().sort((a, b) => {
+      const ta = lastAsked[key(a.wordId, a.dir)] ?? -1;
+      const tb = lastAsked[key(b.wordId, b.dir)] ?? -1;
+      return ta - tb;
+    }).slice(0, Math.max(1, Math.ceil(pool.length / 3)));
   }
-  return out;
-}
-
-function untaughtWordsForDay(d) {
-  const ks = dayRange(d);
-  const ids = [];
-  ks.forEach(k => (KANJI_WORDS[k] || []).forEach(id => {
-    if (!cards[key(id, DIRS.WM)]) ids.push(id);
-  }));
-  return ids.map(id => WORDS[id]);
-}
-
-function startSession() {
-  const cumIds = cumulativeWordIds(currentDay);
-  const due = dueCardsWithin(cumIds);
-  shuffle(due);
-  const reviewItems = due.map(d => ({ mode: 'review', wordId: d.wordId, dir: d.dir }));
-
-  const teachWords = untaughtWordsForDay(currentDay).slice(0, NEW_PER_SESSION);
-  const teachItems = teachWords.map(w => ({ mode: 'teach', wordId: w.id }));
-
-  session = { queue: teachItems.concat(reviewItems), pos: 0, answered: false, lastResult: null };
-  saveSession();
-  render();
+  const weights = candidates.map(p => weightFor(cards[key(p.wordId, p.dir)].streak));
+  const totalW = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * totalW;
+  for (let i = 0; i < candidates.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return candidates[i];
+  }
+  return candidates[candidates.length - 1];
 }
 
 // ---- rendering ----
@@ -594,13 +566,9 @@ function render() {
   const main = el('main');
   app.appendChild(main);
 
-  if (session && session.pos < session.queue.length) {
-    renderReview(main);
-  } else {
-    session = null;
-    saveSession();
-    renderHome(main);
-  }
+  if (session && session.mode === 'learn') renderLearn(main);
+  else if (session && session.mode === 'practice') renderPractice(main);
+  else { session = null; saveSession(); renderHome(main); }
 }
 
 function header() {
@@ -621,27 +589,30 @@ function header() {
 }
 
 function renderHome(main) {
-  const cumIds = cumulativeWordIds(currentDay);
-  const due = dueCardsWithin(cumIds).length;
-  const newAvail = untaughtWordsForDay(currentDay).length;
-
   const row = el('div', 'stat-row');
   const s1 = el('div', 'stat');
-  s1.appendChild(el('div', 'n', String(due)));
-  s1.appendChild(el('div', 'l', 'due now'));
+  s1.appendChild(el('div', 'n', 'Day ' + currentDay + '/' + totalDays()));
+  s1.appendChild(el('div', 'l', dayRange(currentDay).length + ' kanji this group'));
   const s2 = el('div', 'stat');
-  s2.appendChild(el('div', 'n', String(Math.min(newAvail, NEW_PER_SESSION))));
-  s2.appendChild(el('div', 'l', 'new available'));
-  const s3 = el('div', 'stat');
-  s3.appendChild(el('div', 'n', 'Day ' + currentDay + '/' + totalDays()));
-  s3.appendChild(el('div', 'l', dayRange(currentDay).length + ' kanji this group'));
-  row.appendChild(s1); row.appendChild(s2); row.appendChild(s3);
+  s2.appendChild(el('div', 'n', overallMasteredCount() + '/' + KANJI.length));
+  s2.appendChild(el('div', 'l', 'mastered'));
+  row.appendChild(s1); row.appendChild(s2);
   main.appendChild(row);
 
-  const startBtn = el('button', 'primary', due + newAvail > 0 ? 'Start review' : 'Nothing due');
-  startBtn.disabled = due + newAvail === 0;
-  startBtn.onclick = startSession;
-  main.appendChild(startBtn);
+  const newWords = untaughtDayWords(currentDay);
+  if (newWords.length) {
+    const learnBtn = el('button', 'primary', 'Learn day ' + currentDay + ' (' + newWords.length + ' new)');
+    learnBtn.onclick = startLearn;
+    main.appendChild(learnBtn);
+  } else {
+    main.appendChild(el('div', 'progress-line', 'All of day ' + currentDay + ' introduced.'));
+  }
+
+  const hasTaught = Object.keys(cards).length > 0;
+  const practiceBtn = el('button', hasTaught ? 'primary' : 'secondary', 'Practice');
+  practiceBtn.disabled = !hasTaught;
+  practiceBtn.onclick = startPractice;
+  main.appendChild(practiceBtn);
 
   if (dayComplete(currentDay) && currentDay < totalDays()) {
     const nextBtn = el('button', 'secondary', 'Move to day ' + (currentDay + 1));
@@ -677,13 +648,17 @@ function shadeFor(avg) {
   return 'rgb(' + rgb.join(',') + ')';
 }
 
-// ---- review / teach screens ----
+// ---- shared question UI ----
 
-function renderReview(main) {
-  const item = session.queue[session.pos];
-  main.appendChild(el('div', 'progress-line', (session.pos + 1) + ' of ' + session.queue.length));
-  if (item.mode === 'teach') renderTeach(main, item);
-  else renderTest(main, item);
+function streakTag(cardKey) {
+  const c = cards[cardKey];
+  const s = c ? c.streak : 0;
+  return el('div', 'streak-tag', 'streak ' + Math.min(s, MASTERY_STREAK) + '/' + MASTERY_STREAK);
+}
+
+function stampSvg(correct) {
+  if (correct) return '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#b8002a" stroke-width="6"/></svg>';
+  return '<svg viewBox="0 0 100 100"><line x1="18" y1="18" x2="82" y2="82" stroke="#b8002a" stroke-width="6"/><line x1="82" y1="18" x2="18" y2="82" stroke="#b8002a" stroke-width="6"/></svg>';
 }
 
 function promptLabel(dir) {
@@ -692,12 +667,12 @@ function promptLabel(dir) {
   return 'meaning';
 }
 
-function renderTest(main, item) {
-  const word = wordById(item.wordId);
-  const dir = item.dir;
+function renderQuestion(main, wordId, dir, onDone) {
+  const word = wordById(wordId);
+  const cardKey = key(wordId, dir);
   const frame = el('div', 'card-frame');
+  frame.appendChild(streakTag(cardKey));
   frame.appendChild(el('div', 'prompt-label', promptLabel(dir)));
-
   const promptText = (dir === DIRS.WM || dir === DIRS.WR) ? word.word : word.meaning;
   const small = dir === DIRS.MW;
   frame.appendChild(el('div', 'prompt-main' + (small ? ' small' : ''), promptText));
@@ -715,7 +690,11 @@ function renderTest(main, item) {
     const submit = () => {
       const val = input.value.trim();
       if (!val) return;
-      submitAnswer(item, val);
+      const correct = checkAnswer(word, dir, val);
+      session.answered = true;
+      session.lastResult = { input: val, correct };
+      saveSession();
+      render();
     };
     input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
 
@@ -723,86 +702,44 @@ function renderTest(main, item) {
     btn.onclick = submit;
     main.appendChild(btn);
   } else {
-    renderFeedback(main, item, frame);
-  }
-}
+    const result = session.lastResult;
+    const stamp = el('div', 'stamp');
+    stamp.innerHTML = stampSvg(result.correct);
+    frame.appendChild(stamp);
 
-function submitAnswer(item, input) {
-  const word = wordById(item.wordId);
-  const correct = checkAnswer(word, item.dir, input);
-  session.answered = true;
-  session.lastResult = { input, correct };
-  saveSession();
-  render();
-}
-
-function stampSvg(correct) {
-  if (correct) return '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#b8002a" stroke-width="6"/></svg>';
-  return '<svg viewBox="0 0 100 100"><line x1="18" y1="18" x2="82" y2="82" stroke="#b8002a" stroke-width="6"/><line x1="82" y1="18" x2="18" y2="82" stroke="#b8002a" stroke-width="6"/></svg>';
-}
-
-function renderFeedback(main, item, frame) {
-  const word = wordById(item.wordId);
-  const result = session.lastResult;
-
-  const stamp = el('div', 'stamp');
-  stamp.innerHTML = stampSvg(result.correct);
-  frame.appendChild(stamp);
-
-  const block = el('div', 'feedback-block');
-  const rows = [['word', word.word], ['reading', word.reading], ['meaning', word.meaning]];
-  if (!result.correct) rows.push(['you wrote', result.input]);
-  rows.forEach(pair => {
-    const r = el('div', 'row');
-    r.appendChild(el('span', 'l', pair[0]));
-    r.appendChild(el('span', '', pair[1]));
-    block.appendChild(r);
-  });
-  main.appendChild(block);
-
-  const card = cards[key(item.wordId, item.dir)];
-  main.appendChild(el('div', 'progress-line', 'streak: ' + card.reps + ' / ' + MASTERY_STREAK));
-
-  if (result.correct) {
-    const row = el('div', 'rate-row');
-    ['hard', 'good', 'easy'].forEach(r => {
-      const b = el('button', r, r[0].toUpperCase() + r.slice(1));
-      b.onclick = () => finishCard(item, r);
-      row.appendChild(b);
+    const block = el('div', 'feedback-block');
+    const rows = [['word', word.word], ['reading', word.reading], ['meaning', word.meaning]];
+    if (!result.correct) rows.push(['you wrote', result.input]);
+    rows.forEach(pair => {
+      const r = el('div', 'row');
+      r.appendChild(el('span', 'l', pair[0]));
+      r.appendChild(el('span', '', pair[1]));
+      block.appendChild(r);
     });
-    main.appendChild(row);
-  } else {
+    main.appendChild(block);
+
     const cont = el('button', 'primary', 'Continue');
-    cont.onclick = () => finishCard(item, 'again');
+    cont.onclick = () => onDone(result.correct);
     main.appendChild(cont);
   }
 }
 
-function finishCard(item, rating) {
-  const cardKey = key(item.wordId, item.dir);
-  const card = cards[cardKey];
-  grade(card, rating);
-  unlockFollowups(item.wordId, item.dir);
-  saveCards();
+// ---- learn mode (sequential, in day order, FRQ) ----
 
-  if (rating === 'again') {
-    const reinsertAt = Math.min(session.queue.length, session.pos + 3 + Math.floor(Math.random() * 4));
-    session.queue.splice(reinsertAt, 0, { mode: 'review', wordId: item.wordId, dir: item.dir });
-  }
-  advance();
-}
-
-function advance() {
-  session.pos++;
-  session.answered = false;
-  session.lastResult = null;
+function startLearn() {
+  const words = untaughtDayWords(currentDay);
+  session = { mode: 'learn', words: words.map(w => w.id), idx: 0, phase: 'teach', answered: false, lastResult: null };
   saveSession();
   render();
 }
 
-function renderTeach(main, item) {
-  const word = wordById(item.wordId);
-  if (!session.answered) {
+function renderLearn(main) {
+  if (session.idx >= session.words.length) { session = null; saveSession(); render(); return; }
+  const wordId = session.words[session.idx];
+  const word = wordById(wordId);
+  main.appendChild(el('div', 'progress-line', (session.idx + 1) + ' of ' + session.words.length + ' — day ' + currentDay));
+
+  if (session.phase === 'teach') {
     const frame = el('div', 'card-frame');
     frame.appendChild(el('div', 'prompt-label', 'new'));
     frame.appendChild(el('div', 'prompt-main', word.word));
@@ -817,56 +754,62 @@ function renderTeach(main, item) {
     main.appendChild(body);
 
     const btn = el('button', 'primary', 'Got it');
-    btn.onclick = () => { session.answered = 'echo'; saveSession(); render(); };
+    btn.onclick = () => {
+      teachWord(wordId);
+      session.phase = 'quiz';
+      session.answered = false;
+      session.lastResult = null;
+      saveSession();
+      render();
+    };
     main.appendChild(btn);
   } else {
-    renderEcho(main, item, word);
+    renderQuestion(main, wordId, DIRS.MW, correct => {
+      grade(key(wordId, DIRS.MW), correct);
+      session.idx++;
+      session.phase = 'teach';
+      session.answered = false;
+      session.lastResult = null;
+      saveSession();
+      render();
+    });
   }
 }
 
-function renderEcho(main, item, word) {
-  const frame = el('div', 'card-frame');
-  frame.appendChild(el('div', 'prompt-label', 'which one'));
-  frame.appendChild(el('div', 'prompt-main small', word.meaning));
-  main.appendChild(frame);
+// ---- practice mode (weighted-random, cumulative, FRQ) ----
 
-  const others = shuffle(WORDS.filter(w => w.id !== word.id)).slice(0, 2);
-  const options = shuffle([word].concat(others));
-  const label = el('div', 'section-label', 'pick the matching word');
-  main.appendChild(label);
-  options.forEach(opt => {
-    const b = el('button', 'secondary', opt.word);
-    b.onclick = () => {
-      if (opt.id === word.id) {
-        cards[key(word.id, DIRS.WM)] = freshCard(Date.now() + DAY);
-        saveCards();
-        advance();
-      } else {
-        label.textContent = 'not quite — pick the matching word';
-        b.disabled = true;
-      }
-    };
-    main.appendChild(b);
+function startPractice() {
+  session = { mode: 'practice', turn: 0, lastAsked: {}, current: null, answered: false, lastResult: null };
+  advancePractice();
+}
+
+function advancePractice() {
+  const pick = pickNextPractice();
+  if (!pick) { session = null; saveSession(); render(); return; }
+  session.current = pick;
+  session.answered = false;
+  session.lastResult = null;
+  session.lastAsked[key(pick.wordId, pick.dir)] = session.turn;
+  saveSession();
+  render();
+}
+
+function renderPractice(main) {
+  main.appendChild(el('div', 'progress-line', 'practice — question ' + (session.turn + 1)));
+  const { wordId, dir } = session.current;
+  renderQuestion(main, wordId, dir, correct => {
+    grade(key(wordId, dir), correct);
+    session.turn++;
+    advancePractice();
   });
 }
 
 // ---- import / export / reset ----
 
-function packCard(wid, dir, c) {
-  const dirCode = dir === DIRS.WM ? 0 : dir === DIRS.WR ? 1 : 2;
-  const dueH = Math.round((c.due - Date.now()) / 3600000);
-  const intH = Math.round(c.interval / 3600000);
-  return [wid, dirCode, intH, Math.round(c.ease * 100), c.reps, c.lapses,
-          c.everLapsed ? 1 : 0, c.hardWon, c.easyStreak, dueH].join('.');
-}
-
 function exportString() {
   const parts = [];
-  for (const k in cards) {
-    const bits = k.split(':');
-    parts.push(packCard(bits[0], bits[1], cards[k]));
-  }
-  const raw = 'v1|' + currentDay + '|' + parts.join(';');
+  for (const k in cards) parts.push(k + '.' + cards[k].streak);
+  const raw = 'v2|' + currentDay + '|' + parts.join(';');
   return btoa(raw);
 }
 
@@ -878,19 +821,10 @@ function importString(str) {
   const newCards = {};
   if (blob) {
     blob.split(';').forEach(p => {
-      const f = p.split('.').map(Number);
-      const dir = f[1] === 0 ? DIRS.WM : f[1] === 1 ? DIRS.WR : DIRS.MW;
-      newCards[f[0] + ':' + dir] = {
-        state: f[4] > 0 ? 'review' : 'learning',
-        interval: f[2] * 3600000,
-        ease: f[3] / 100,
-        reps: f[4],
-        lapses: f[5],
-        everLapsed: !!f[6],
-        hardWon: f[7],
-        easyStreak: f[8],
-        due: Date.now() + f[9] * 3600000
-      };
+      const lastDot = p.lastIndexOf('.');
+      const k = p.slice(0, lastDot);
+      const streak = parseInt(p.slice(lastDot + 1), 10) || 0;
+      newCards[k] = { streak };
     });
   }
   cards = newCards;
